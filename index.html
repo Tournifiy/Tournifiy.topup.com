@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Fire Diamond Top-Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #1e2a38;
+      padding: 30px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+      text-align: center;
+      color: #f1c40f;
+      margin-bottom: 25px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: #34495e;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    select:focus, input:focus {
+      outline: 2px solid #f1c40f;
+    }
+
+    .payment-hint {
+      display: none;
+      background-color: #27ae60;
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .payment-hint.show {
+      display: block;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #16a085, #27ae60);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #1abc9c, #2ecc71);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔥 Free Fire Diamond Top-Up 🔥</h2>
+
+    <input type="text" placeholder="Enter your Free Fire ID" id="freeFireId" />
+
+    <select id="diamondPackage">
+      <option value="100">100 Diamonds - ৳100</option>
+      <option value="200">200 Diamonds - ৳200</option>
+      <option value="500">500 Diamonds - ৳500</option>
+    </select>
+
+    <select id="paymentMethod" onchange="showPaymentHint()">
+      <option value="" disabled selected>Select Payment Method</option>
+      <option value="bKash">bKash</option>
+      <option value="Nagad">Nagad</option>
+    </select>
+
+    <div id="paymentHint" class="payment-hint">Send Money 01819441618</div>
+
+    <input type="text" placeholder="Enter your Transaction ID" id="transactionId" />
+    <input type="text" placeholder="Enter your number (used to send money)" id="paymentNumber" />
+
+    <button onclick="submitOrder()">SUBMIT</button>
+  </div>
+
+  <script>
+    function showPaymentHint() {
+      const method = document.getElementById("paymentMethod").value;
+      const hint = document.getElementById("paymentHint");
+      if (method === "bKash" || method === "Nagad") {
+        hint.classList.add("show");
+      } else {
+        hint.classList.remove("show");
+      }
+    }
+
+    function submitOrder() {
+      const freeFireId = document.getElementById("freeFireId").value.trim();
+      const diamondPackage = document.getElementById("diamondPackage").value;
+      const paymentMethod = document.getElementById("paymentMethod").value;
+      const transactionId = document.getElementById("transactionId").value.trim();
+      const paymentNumber = document.getElementById("paymentNumber").value.trim();
+
+      if (!freeFireId || !diamondPackage || !paymentMethod || !transactionId || !paymentNumber) {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      const message = `Free Fire Diamond Top-Up Request:
+-------------------------------
+Free Fire ID: ${freeFireId}
+Diamond Package: ${diamondPackage} Diamonds
+Payment Method: ${paymentMethod}
+Transaction ID: ${transactionId}
+Sender Number: ${paymentNumber}`;
+
+      const whatsappUrl = `https://wa.me/8801819441618?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
